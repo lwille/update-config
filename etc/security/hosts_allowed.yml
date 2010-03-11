@@ -1,5 +1,5 @@
 # Configuration file for allow_hosts script by Leo
-# Allowed hostnames
+# Allowed hostnames (can be dynamic DNS hosts)
 hostnames:
   fred: fred.homelinux.org
   eric: eric.kicks-ass.net
