@@ -7,6 +7,26 @@ On our server, we use IP addresses for access restrictions - root logins are onl
 So, whenever update-config tool is run, it resolves the IP addresses of some dynamic DNS hostnames and updates the appropriate section of the config files with the new addresses.
 As configuration files may have a distinct syntax, the user can specify the format of each config file in a very simple manner.
 
+Disclaimer
+==========
+*As this tool will directly modify your system's configuration, I urge you to make backup copies of each file you add to the configuration.*
+I wrote this tool for my personal use, so I can't grant for anything if you might happen to locking yourself out of a remote machine.
+
+This is tested with Debian Lenny and Mac OS X Snow Leopard, both with ruby 1.8.7, but should also work on other UNIX systems.
+
+Installation
+============
+    git clone git@github.com:lwille/update-config.git
+    cd update-config
+    cp etc/security/hosts_allowed.yml /etc/security/
+    cp usr/sbin/resolver /usr/sbin
+    chmod 740 /usr/sbin/resolver
+Now edit your hosts_allowed.yml with a text editor of your choice - maybe you should make a copy of your original access.conf or pg_hba using
+    cp /etc/security/access.conf /etc/security/access.org
+    cp /etc/postgresql/8.3/main/pg_hba.conf /etc/postgresql/8.3/main/pg_hba.conf.org
+before running the script. The script itself will create a backup of the files (extension .bak) on each call, so you can always revert to _the last state_ (only).
+Refer to the "Sample crontab entry" section of this file about adding a crontab entry.
+
 Configuration example
 =====================
 The script looks after a BEGIN allowed_hosts ... END allowed_hosts block in each file.
