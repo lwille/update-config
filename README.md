@@ -31,7 +31,7 @@ between the # BEGIN .. # END lines of your postgresql access configuration file.
 
 The block notation recognized by the script looks like:
     # BEGIN allowed_hosts
-#      configuration entries will be inserted here
+      configuration entries will be inserted here
     # END allowed_hosts
 Please notice the space between the comment hash and BEGIN/END.
 
