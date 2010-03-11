@@ -1,9 +1,8 @@
 # Configuration file for allow_hosts script by Leo
 # Allowed hostnames
 hostnames:
-  emma: emma-mobil.kicks-ass.net
-  erich: erich.homelinux.org
-  flo: flobraeuer.dyndns.info
+  fred: fred.homelinux.org
+  eric: eric.kicks-ass.net
 
 # Files to change
 # The script looks after a BEGIN allowed_hosts ... END allowed_hosts block in each file
@@ -14,14 +13,14 @@ hostnames:
 #    ip
 #    host
 #    name
-# After each line, a newline character is automatically inserted.
+# After each line, a newline character is inserted automatically.
 
 files:
-  ssh:
-    path: 'access.conf'
-    comment: "# #{name}/#{host}"
-    line: "+ : root : #{ip}"
   postgres:
-    path: 'pg_hba.conf'
+    path: '/etc/postgresql/8.3/main/pg_hba.conf'
     comment: "# #{name}/#{host}"
     line: "hostssl\tall\t\tall\t\t#{ip}/32\tmd5"
+  ssh:
+    path: '/etc/security/access.conf'
+    comment: "# #{name}/#{host}"
+    line: "+ : root : #{ip}"
