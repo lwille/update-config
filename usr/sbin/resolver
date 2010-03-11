@@ -1,0 +1,27 @@
+require 'yaml'
+require 'resolv'
+require 'ftools'
+puts "#{Time.now}\nip-resolver.rb © Leonhardt Wille"
+config = YAML::load_file('hosts_allowed.yml')
+config['files'].each do |k,file|
+  File.copy(file['path'],file['path']+".bak",true)
+  puts "Opening #{file['path']}"
+  fd=File.open(file['path'], 'r+')
+  line = file['line']
+  comment = file['comment']
+  lines=config['hostnames'].collect do |name,host| 
+    puts "\tWriting entry #{name}"
+    ip=Resolv.getaddress host
+    eval "\"#{comment}\n#{line}\n\""
+  end
+  content=fd.read
+  if content.gsub!(/(# BEGIN allowed_hosts\n)(.*)(\n# END allowed_hosts)/m,"# BEGIN allowed_hosts\n#{lines}\n# END allowed_hosts")
+    fd.rewind
+    puts "\tsaving file"
+    fd.write content
+  else
+    raise "#BEGIN ... #END block not found."
+  end
+  puts "\tclosing #{file['path']}"
+  fd.close
+end
