@@ -29,6 +29,12 @@ This example configuration will place the lines
     hostssl	all		all		118.124.164.267/32	md5
 between the # BEGIN .. # END lines of your postgresql access configuration file.
 
+The block notation recognized by the script looks like:
+    # BEGIN allowed_hosts
+#      configuration entries will be inserted here
+    # END allowed_hosts
+Please notice the space between the comment hash and BEGIN/END.
+
 The text has to be enclosed by double quotes.
 The following variables can be used (using #{variable}):
    ip
