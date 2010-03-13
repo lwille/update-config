@@ -20,6 +20,7 @@ files:
     path: '/etc/postgresql/8.3/main/pg_hba.conf'
     comment: "# #{name}/#{host}"
     line: "hostssl\tall\t\tall\t\t#{ip}/32\tmd5"
+    after: "kill -HUP `cat /var/run/postgresql/8.3-main.pid`"
   ssh:
     path: '/etc/security/access.conf'
     comment: "# #{name}/#{host}"
