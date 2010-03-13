@@ -41,13 +41,13 @@ Example hosts_allowed.yml file:
         path: '/etc/postgresql/8.3/main/pg_hba.conf'
         comment: "# #{name}/#{host}"
         line: "hostssl\tall\t\tall\t\t#{ip}/32\tmd5"
-
+        after: "kill -HUP `cat /var/run/postgresql/8.3-main.pid`"
 This example configuration will place the lines
     # eric/eric.kicks-ass.net
     hostssl	all		all		84.123.19.250/32	md5
     # fred/fred.homelinux.org
     hostssl	all		all		118.124.164.267/32	md5
-between the # BEGIN .. # END lines of your postgresql access configuration file.
+between the # BEGIN .. # END lines of your postgresql access configuration file and send HUP to the postgres process to enforce reloading of the configuration.
 
 The block notation recognized by the script looks like:
     # BEGIN allowed_hosts
