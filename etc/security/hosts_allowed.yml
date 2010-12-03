@@ -5,7 +5,7 @@ hostnames:
   eric: eric.kicks-ass.net
 
 # Files to change
-# The script looks after a BEGIN allowed_hosts ... END allowed_hosts block in each file
+# The script looks for a # BEGIN allowed_hosts ... # END allowed_hosts block in each file
 # For each entry in the hostnames section, the contents of the block will be replaced
 #   by a comment and configuration line specified for each file. 
 # The text has to be enclosed by double quotes. 
