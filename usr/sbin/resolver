@@ -17,6 +17,7 @@ config['files'].each do |k,file|
   content=fd.read
   if content.gsub!(/(# BEGIN allowed_hosts\n)(.*)(\n# END allowed_hosts)/m,"# BEGIN allowed_hosts\n#{lines}\n# END allowed_hosts")
     fd.rewind
+    fd.truncate 0
     puts "\tsaving file"
     fd.write content
   else
