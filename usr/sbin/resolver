@@ -26,7 +26,7 @@ config['files'].each do |k,file|
   end
   puts "\tclosing #{file['path']}"
   fd.close
-  unless file['after'].blank?
+  unless file['after'].nil?
     system file['after']
   end
 end
